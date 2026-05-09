@@ -1,0 +1,57 @@
+
+.header {
+    display: flex;
+    padding-top: 20px;
+    width: 100%;
+    justify-content: center;
+}
+
+.InputFrom {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    width: 500px;
+}
+
+.movieList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 12px;
+    padding: 10px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #2A3245;
+    border-radius: 10px;
+    gap: 10px;
+}
+
+.card img{
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+}
+
+.Content {
+    display: flex;
+    flex-direction: column;
+    background-color: #3e4963;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.Title{
+    margin: 0;
+    padding: 5px;
+    color: snow;
+}
+
+.red {
+    border-color: #2A3245;
+}
+
