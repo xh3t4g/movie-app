@@ -7,9 +7,10 @@ import { CardGenerait } from "../components/CardGenerait";
 
 export function HomePage() {
 
-    const [query, setQuery] = useState("Призрачный гонщик");
+    const [query, setQuery] = useState('');
     const [IsTrueRed, setIsTrueRed] = useState(false);
     const [movies, setMovies] = useState<Movie[]>([])
+    const [genre, setGenre] = useState([])
     const API_KEY = (import.meta.env.VITE_API_KEY)
 
 
@@ -35,6 +36,14 @@ export function HomePage() {
         }
     }, [query])
 
+    useEffect(() => {
+        fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=ru-RU`)
+        .then((res) => res.json())
+        .then((data) => {
+            setGenre(data.genres)
+        })
+    }, [])
+
 
     return <>
     
@@ -54,11 +63,13 @@ export function HomePage() {
         {movies && <>
             <main>
                 <div className={css["movieList"]}>
-                    {movies.map((movie) => {
+                    {movies.filter((movie) => movie.poster_path).map((movie) => {
                         const img = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
+                        const genre_ids = movie.genre_ids.slice(0, 2).map((id) => genre.find((genreID) => genreID.id === id));
+
                         return (
-                            <CardGenerait key={movie.id} movie={movie} img={img}/>
+                            <CardGenerait key={movie.id} movie={movie} img={img} genre={genre_ids}/>
                         )
                     })}
                 </div>
