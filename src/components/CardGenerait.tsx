@@ -17,13 +17,21 @@ export function CardGenerait({movie, img, genre}: Props) {
 
             <img src={img}/>
 
+            <span className={css["Reitng"]}>{movie.vote_average.toFixed(1)}</span>
+
             <div className={css["card-overlay"]}>
-                <h3 className={css["Title"]}>{movie.title}</h3>
-                <div className='Reitng-genre'>
-                    <span className={css["Reitng"]}>{movie.vote_average.toFixed(1)}</span>
-                    <span className={css["genre"]}>{genre.map((p) => p.name).join(' ')}</span>
+                <div className={css["Reitng-genre"]}>
+                    <h3 className={css["Title"]}>{movie.title}</h3>
+                    <div className={css["genres"]}>
+                        {genre.map((p) => (
+                            <span key={p.id} className={css['genre']}>
+                                {p.name}
+                            </span>
+                        ))}
+                    </div>
                 </div>
             </div>
+
         </div>
     )
 }
